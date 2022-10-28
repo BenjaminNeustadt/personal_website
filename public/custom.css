@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color:rgb(106, 156, 31);
+  background-color:rgb(237, 237, 237);
 }
 
 /* Theme toggle business
@@ -40,7 +40,7 @@ body {
 }
 
 .dark-mode-toggle {
-  background: rgb(44, 48, 101);
+  background: rgb(67, 67, 78);
   color: #fff;
 }
 
@@ -54,6 +54,6 @@ body {
 }
 
 .dark-mode-theme {
-  background: rgb(26, 28, 54);
+  background: rgb(53, 53, 58);
   color: #fff;
 }
