@@ -1,10 +1,13 @@
 <html>
   <head>
+  <link rel="stylesheet" type="text/css" href="custom.css">
   </head>
   <body>
     <header>
     </header>
     <%= erb :'partials/nav', layout: false %>
-    <%=yield%>
+    <main class="theme">
+      <%=yield%>
+    </main>
   </body>
 </html>
