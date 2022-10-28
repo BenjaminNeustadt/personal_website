@@ -19,6 +19,8 @@ GEM
       rack-protection (= 3.0.2)
       sinatra (= 3.0.2)
       tilt (~> 2.0)
+    sinatra-partial (1.0.1)
+      sinatra (>= 1.4)
     tilt (2.0.11)
 
 PLATFORMS
@@ -27,6 +29,7 @@ PLATFORMS
 DEPENDENCIES
   sinatra
   sinatra-contrib
+  sinatra-partial
 
 BUNDLED WITH
    2.3.22
