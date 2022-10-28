@@ -22,6 +22,10 @@ body {
   font-weight: 800;
 }
 
+#theme-img{
+  content:url('assets/crescent-moon.png');
+}
+
 #toggle-btn:hover {
   cursor: pointer;
   opacity: 0.8;
@@ -42,11 +46,6 @@ body {
   color: #fff;
 }
 
-#experiement-button{
-  color: white;
-  border: 1px solid #200;
-  font-weight: bold;
-  width: 200px;
-  height: 100px;
-}
+#theme-img {
 
+}
