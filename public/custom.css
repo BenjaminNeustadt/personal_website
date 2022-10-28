@@ -1,3 +1,19 @@
+#noneall a{
+  text-decoration: none;
+  text-align: justify;
+  color:aqua;
+}
+
+#Link{
+  text-decoration: none;
+}
+
+#text {
+ text-align: left;
+ margin-right: 50px;
+ margin-left: 30px;
+}
+
 .navbar {
   border: none;
   box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
@@ -8,6 +24,11 @@
 .material {
   margin-left: 20px;
   padding-top: 20px;
+}
+
+.elements{
+  margin-bottom:30px;
+  text-decoration: none;
 }
 
 body {
