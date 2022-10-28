@@ -41,3 +41,12 @@ body {
   background: rgb(26, 28, 54);
   color: #fff;
 }
+
+#experiement-button{
+  color: white;
+  border: 1px solid #200;
+  font-weight: bold;
+  width: 200px;
+  height: 100px;
+}
+
