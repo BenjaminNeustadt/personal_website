@@ -1,5 +1,5 @@
 require 'sinatra'
 
 get '/' do
-  'Hello Again second website'
+  erb:'page/home'
 end
