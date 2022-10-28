@@ -24,10 +24,14 @@ body {
 
 .night-theme-img {
   content:url('assets/crescent-moon.png');
+  height:25px;
+  width:25px;
 }
 
 .day-theme-img {
   content:url('assets/bright-button.png');
+  height:25px;
+  width:25px;
 }
 
 #toggle-btn:hover {
@@ -41,7 +45,7 @@ body {
 }
 
 .dark-mode-toggle-light {
-  background: pink;
+  background: white;
 }
 
 #theme {
