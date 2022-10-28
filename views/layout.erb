@@ -2,12 +2,13 @@
   <head>
   <link rel="stylesheet" type="text/css" href="custom.css">
   </head>
-  <body>
+  <body id="theme">
     <header>
     <%= erb :'partials/nav', layout: false %>
     </header>
     <main class="theme">
       <%=yield%>
     </main>
+    <script src="js/main.js"></script>
   </body>
 </html>

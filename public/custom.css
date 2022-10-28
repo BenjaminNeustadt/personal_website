@@ -11,8 +11,33 @@
 }
 
 body {
-  background-color:greenyellow;
+  background-color:rgb(106, 156, 31);
 }
 
-/* .btn btn-default navbar-btn {
-} */
+/* Theme toggle business
+*/
+
+#toggle-btn {
+  padding: 0.5em;
+  font-weight: 800;
+}
+
+#toggle-btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.dark-mode-toggle {
+  background: rgb(44, 48, 101);
+  color: #fff;
+}
+
+#theme {
+  width: 100vw;
+  height: 100vh;
+}
+
+.dark-mode-theme {
+  background: rgb(26, 28, 54);
+  color: #fff;
+}
