@@ -1,0 +1,7 @@
+= *Process*
+
+== Team methodologies
+
+== Agile vs Waterfall
+
+== Kanban

@@ -1,0 +1,22 @@
+= *Miscellaneous*
+
+== Cascading Styles Sheets (CSS)
+
+== HTML
+
+== Mardown(md)
+
+== Asciidoc formatting and documentation formatting
+
+****
+
+https://highlightjs.org/[highlight.js] versus https://github.com/rouge-ruby/rouge[rouge syntax highlighter]
+
+The primary difference in terms of functionality is that rouge supports line numbering, whereas highlight.js does not,
+however the latter supports dark theme/light theme, whereas the former does not.
+
+Currently, we are using rouge for the source code highlighting in this document, but will probably try out highlight.js instead,
+as it would be nice to have the source code stand out from the rest of the page with a dark theme which would actually be more in tune with the GUI
+interface of the our terminal set-ups anyway.
+
+****

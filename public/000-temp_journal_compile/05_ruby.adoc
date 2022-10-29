@@ -1,0 +1,195 @@
+:source-language: shell
+:doctype: article
+//URLS
+:url-ruby-dependency-injection: https://medium.com/@Bakku1505/introduction-to-dependency-injection-in-ruby-dc238655a278
+//URLS
+:url-ruby-webassembly: https://www.youtube.com/watch?v=yHFMvfuEBSk
+:url-why-poignant-guide: http://poignant.guide/
+:url-dependency-injection-java: https://www.codejava.net/coding/what-is-dependency-injection-with-java-code-example
+:url-well-grounded-ruby: https://www.manning.com/books/the-well-grounded-rubyist
+:url-twilio-diff-testing: https://www.twilio.com/blog/unit-integration-end-to-end-testing-difference
+:url-rspec-base: https://rspec.info/
+:url-rspec-docs: https://relishapp.com/rspec
+
+= *Ruby*
+
+== Introdution
+
+[.normal]
+Ruby is commonly known by the community as being "very expressive", perhaps that's because it's dynamically typed, or because objects (as we'll momentarily see) can be coerced. We can change things at the language level.
+It might also be that, in Ruby, there are _many many many_ ways to do anything and everything.
+
+Ruby was invented by a lovely Japanese man - Yukihiro Matsumoto.
+The idea was/is to have a language that is not only "really expressive", but also really simple.
+That doesn't mean simplistic, however, since we can do all manner or complex things, like {url-ruby-webassembly}[this WebAssembly interpreter].
+
+The simplicity of Ruby contributes to the idiomatic nature of it, meaning it reads slightly like natural language - it's design is such that even a non-programmer can understand more or less what is happening.
+To get a really nice primer in Ruby through fun and inspiring reading see {url-why-poignant-guide}[_Why's Poignant Guide_].
+For something more serious see {url-well-grounded-ruby}[_The Well Grounded Rubyist_]
+
+== Ruby in Practice
+
+=== Syntax
+
+== Test Driven Development (TDD)
+
+=== Red Green Refactor
+
+== Testing Frameworks
+
+We consider testing frameworks in light of being able to verify that our code does what it is intended to do. We have different ways of testing:
+
+1. *Unit testing*: individual software components are tested, an inidividual component could either be an individual function or a procedure.
+2. *Integration testing*: testing the interface between two or more software units or modules. The aim is to expose faults in the interaction between integrated units.Generally we do this after unit testing has been performed.
+3. *End to End testing*: verifying code's deployed behaviour from a user perspective, by automating a user simulationthat interacts with your system as a black box (we will look at Capybara for this in the web section below)
+
+For a detailed explanation of the differences between these Twilio has a great article on this {url-twilio-diff-testing}[here].
+
+=== Unit testing with *RSpec*
+
+*_What is it?_*
+
+{url-rspec-base}[RSpec] is a kind of programming tool called a test
+framework, it's written for use with the programming language Ruby. We can use
+it to test that a particular component (sych as a method) does what is supposed to do by matching (or not) an expected output with the actual output.
+We can also use it to build our test-driving practice.
+
+The documentation can be found {url-rspec-docs}[here].
+
+._Setting up an RSpec project:_
+[%collapsible]
+====
+
+[source, shell]
+----
+# This assumes you have Ruby & RVM installed. If you don't, visit:
+# https://rvm.io/ to install RVM.
+
+# First, create a directory for your project
+; mkdir your-project-directory
+; cd your-project-directory
+
+# Then, we're going to get you the latest Ruby
+; rvm get stable
+; rvm use ruby --latest --install --default
+
+# Next, install bundler, which manages dependencies like RSpec
+; gem install bundler
+
+# Create a bundler project
+; bundle init
+
+# And add RSpec to your dependencies
+; bundle add rspec
+
+# Generate an RSpec template
+; rspec --init
+
+# Create a folder for your implementation code
+; mkdir lib
+
+# And create a repository for your changes
+; git init .
+; git add .
+; git commit -m "Project setup"
+
+# Then go and create a repository on github.com
+# On the next screen after you have created the repository,
+# follow the "Push an existing repository from the command line" section
+# To push your project to your github repository
+# It will look something like this...
+; git remote add origin YOUR_REMOTE_ADDRESS
+; git branch -M main
+; git push -u origin main
+----
+====
+
+== Web Frameworks
+
+=== Sinatra
+
+include::2_course_notes/create-authenticate_users.adoc[]
+
+.Using JavaScript with Ruby
+https://ritz-w.github.io/using-javascript-with-ruby/index.html
+
+=== Rails
+
+=== Hanami
+
+=== Web testing
+
+=== Capybara
+
+== REPL
+
+== Debugging
+
+== Object
+
+https://www.techopedia.com/definition/28106/polymorphism-general-programming
+
+== API
+
+https://whoapi.com/blog/a-beginners-guide-to-writing-an-api/
+
+https://legacydocs.hubspot.com/docs/methods/forms/forms_overview
+
+.what is an object
+https://bparanj.gitbooks.io/ruby-basics/content/what_is_an_object.html
+
+.everything is an object in ruby
+https://jerrylin224.gitbooks.io/commonly-asked-interview-questions-for-rails-deve/content/basic/why-everything-is-object-in-ruby.html
+
+.everything is an object in ruby
+https://stackoverflow.com/questions/3429553/is-everything-an-object-in-ruby
+
+.everything is an object in Ruby? part 1
+https://blog.francium.tech/is-everything-an-object-in-ruby-part-i-1089773e1922
+
+.everything is an object in Ruby? part 2
+https://blog.francium.tech/is-everything-an-object-in-ruby-part-ii-963fcfd69649
+
+.whats an object?
+https://bparanj.gitbooks.io/ruby-basics/content/what_is_an_object.html
+
+.what is `super` in Ruby?
+https://stackoverflow.com/questions/31019009/what-is-super-in-ruby
+
+== Class
+
+https://www.tutorialspoint.com/ruby/ruby_classes.htm
+
+.eigenclass
+https://medium.com/rubycademy/understanding-the-eigenclass-in-less-than-5-minutes-dcb8ca223eb4
+
+.self and .this
+http://poligen.gitlab.io/javascript-this-and-ruby-self/
+
+.what is self in Ruby and how to use it
+https://www.rubyguides.com/2020/04/self-in-ruby/
+
+.This belongs in C
+https://www.tutorialspoint.com/What-is-the-difference-between-public-static-and-void-keywords-in-Chash
+
+=== Arrays
+
+=== Methods
+
+== Access control
+
+https://technical-qa.com/what-are-the-three-levels-of-method-access-control-for-classes-and-what-do-they-signify/#What_are_the_three_levels_of_method_access_control_for_classes_and_what_do_they_signify
+
+== Ruby theory
+
+For an indepth section on theory see the following chapter.
+
+=== SOLID principles in Ruby
+
+=== Dependency injection in Ruby
+
+{url-ruby-dependency-injection}[Ruby intro to dependency injection]
+
+https://medium.com/@Bakku1505/introduction-to-dependency-injection-in-ruby-dc238655a278
+
+

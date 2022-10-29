@@ -1,0 +1,72 @@
+= *_Notes As We Go_*
+Benjamin b.james.neustadt@gmail.com
+:copyright: © 2022 zeinzzu and KOTP
+:copyright: (C) 2022 {author}
+:doctype: book
+:experimental:
+:header_footer: true
+:icons: font
+//:sectnums:
+:sourcedir: assets
+:toc: left
+:docinfo: shared
+:toclevels: 1
+:toc-title: Table of Contents
+:source-highlighter: highlight.js
+:highlightjsdir: highlight
+:victor_says: Victor Says
+
+[source, ruby]
+----
+def hello
+  "Hello there"
+end
+----
+
+include::02_contributing_to_doc.adoc[]
+
+
+include::03_commands.adoc[]
+
+include::13_version_control.adoc[]
+
+<<<
+
+<<<
+
+include::05_ruby.adoc[]
+
+<<<
+
+***
+
+include::09_theory.adoc[]
+
+= *Web concepts*
+
+image::{sourcedir}/revision.png[width=5%, align="center"]
+
+[.text-center]
+*_Under Revision..._*
+
+= *JavaScript*
+
+image::{sourcedir}/revision.png[width=5%, align="center"]
+
+[.text-center]
+*_Under Revision..._*
+
+= *Csharp*
+
+image::{sourcedir}/revision.png[width=5%, align="center"]
+
+[.text-center]
+*_Under Revision..._*
+
+= *Java*
+
+image::{sourcedir}/revision.png[width=5%, align="center"]
+
+[.text-center]
+*_Under Revision..._*
+

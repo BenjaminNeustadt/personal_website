@@ -1,0 +1,55 @@
+:source-language: shell
+:doctype: article
+
+= *Programming concepts*
+
+== Arrays
+
+== Blocks
+
+== Boolean
+
+== Code reviews
+
+== Continuous Integration
+
+== Control Flow
+
+== Gems/Dependencies
+
+== GitHub Collaboration
+
+== Hashes
+
+== REPL (irb/node)
+
+== Lambdas
+
+== Loops
+
+== Methods
+
+== Pairing
+
+== Parallel Assignment
+
+== Procs
+
+== Recursion
+
+== Shovel Operator
+
+== String Interpolation
+
+== Strings
+
+== Symbols
+
+== Testing
+
+== Asking for user input
+
+== Variables
+
+== Debugging
+

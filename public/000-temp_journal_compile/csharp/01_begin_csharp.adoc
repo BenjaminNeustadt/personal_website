@@ -1,0 +1,977 @@
+= CSHARP INTRODUCTION
+
+== Installing and getting setup
+After downloading the .NET SDK, arm64 version (for mac)
+we do
+
+[source,zsh]
+----
+dotnet new console -o MyApp -f net6.0
+
+//this creates the new app that we name
+
+----
+
+We get this output:
+****
+
+% dotnet new console -o FirstApp -f net6.0
+
+Welcome to .NET 6.0!
+---------------------
+SDK Version: 6.0.401
+
+Telemetry
+---------
+The .NET tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_CLI_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
+
+Read more about .NET CLI Tools telemetry: https://aka.ms/dotnet-cli-telemetry
+
+----------------
+Installed an ASP.NET Core HTTPS development certificate.
+To trust the certificate run 'dotnet dev-certs https --trust' (Windows and macOS only).
+Learn about HTTPS: https://aka.ms/dotnet-https
+----------------
+Write your first app: https://aka.ms/dotnet-hello-world
+Find out what's new: https://aka.ms/dotnet-whats-new
+Explore documentation: https://aka.ms/dotnet-docs
+Report issues and find source on GitHub: https://github.com/dotnet/core
+Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cli
+--------------------------------------------------------------------------------------
+The template "Console App" was created successfully.
+
+Processing post-creation actions...
+Running 'dotnet restore' on /Users/benjamin/projects/post_makers/csharp/FirstApp/FirstApp.csproj...
+  Determining projects to restore...
+  Restored /Users/benjamin/projects/post_makers/csharp/FirstApp/FirstApp.csproj (in 41 ms).
+Restore succeeded.
+
+We  get this output
+
+****
+
+"C# is .NET's modern, innovative, open-source programming language for building all your apps"
+checkout the https://dotnet.microsoft.com/en-us/learn/dotnet/hello-world-tutorial/install[tutorial site],it is really informative and seems to be well written.
+
+****
+In order to install the csharp repl. do the following command [not yet tested though]
+
+.Instructions to install csharp repl
+----
+benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/FirstApp [main]
+% dotnet tool install -g csharprepl
+Tools directory '/Users/benjamin/.dotnet/tools' is not currently on the PATH environment variable.
+If you are using zsh, you can add it to your profile by running the following command:
+
+cat << \EOF >> ~/.zprofile
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/benjamin/.dotnet/tools"
+EOF
+
+And run `zsh -l` to make it available for current session.
+
+You can only add it to the current session by running the following command:
+
+export PATH="$PATH:/Users/benjamin/.dotnet/tools"
+
+You can invoke the tool using the following command: csharprepl
+Tool 'csharprepl' (version '0.3.5') was successfully installed.
+benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/FirstApp [main]
+%
+----
+
+:TIP: resource: https://www.youtube.com/watch?v=tZqDszc_pnA[installing csharp REPL]
+
+
+Playing inside REPL incrementally, we find:
+
+----
+
+> '1 + 1'
+(1,1): error CS1012: Too many characters in character literal
+> '1' + '1'
+98
+> '2' + '2'
+100
+> 'abc'
+(1,1): error CS1012: Too many characters in character literal
+> '…'
+'…'
+> '…' + '1'
+8279
+> 8279 - 49
+8230
+>
+
+----
+It seems to be using string literals for the single quotes, giving us the ascii values to the numbera string and adding them
+
+This is an example of string interpolation:
+
+[source, csharp]
+----
+"Hello"
+> public static String Hello (string name) {
+     return "Hello, " + name + "!";
+  }
+
+> Hello("Giorgio")
+"Hello, Giorgio!"
+>
+----
+
+[source, ruby]
+----
+% irb --simple-prompt
+>> something = 'something'
+=> "something"
+>> ten = 10
+=> 10
+>> sprintf('my something is indeed %s, and it is worth %i cents.', something, ten)
+=> "my something is indeed something, and it is worth 10 cents."
+>> "My something is indeed #{something}, and it is worth #{ten} cents."
+=> "My something is indeed something, and it is worth 10 cents."
+
+----
+
+== Unit testing with C#
+
+For unit testing there are two test frameworks to consider:
+
+NUnit and XUnit
+
+Apparently they are both good https://stackoverflow.com/questions/9769047/nunit-vs-xunit[similar]
+both made by the same person, NUnit has been around for longer (2002), though XUnit is more attuned to TDD.
+Both are well documented and have large communities. XUnit is more modern, more TDD adherent,(cf.post)
+
+Apparently XUnit is more in tune with TDD because it makes sure that test methods are isolated.
+
+The reason I am specifying these differences is because I have found two docs for each and am not certain which one to use:
+
+* https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test[Unit testing C# in .NET Core using dotnet test and xUnit]
+* https://learn.microsoft.com/en-gb/dotnet/core/testing/unit-testing-with-nunit[Unit testing C# with NUnit and .NET Core]
+
+We're going to continue using xUnit for now... so following the first tutorial
+
+The completed solution will have this structure (when we run tree):
+
+[source, shell]
+----
+/unit-testing-using-dotnet-test
+    unit-testing-using-dotnet-test.sln
+    /PrimeService
+        PrimeService.cs
+        PrimeService.csproj
+    /PrimeService.Tests
+        PrimeService_IsPrimeShould.cs
+        PrimeServiceTests.csproj
+----
+
+We run the following:
+
+----
+dotnet new sln -o unit-testing-using-dotnet-test
+----
+
+and get:
+
+----
+----
+//missed that one, do it again later and input it
+
+then, after moving inside that directory, we run the following:
+
+----
+dotnet new classlib -o PrimeService
+----
+
+and get:
+
+----
+% dotnet new classlib -o PrimeService
+The template "Class Library" was created successfully.
+
+Processing post-creation actions...
+Running 'dotnet restore' on /Users/benjamin/projects/post_makers/csharp/unit-testing-using-dotnet-test/PrimeService/PrimeService.csproj...
+  Determining projects to restore...
+  Restored /Users/benjamin/projects/post_makers/csharp/unit-testing-using-dotnet-test/PrimeService/PrimeService.csproj (in 54 ms).
+Restore succeeded.
+----
+
+
+Commands to Create the Solution:
+
+[source, shell]
+----
+>dotnet new sln -o unit-testing-using-dotnet-test
+>cd unit-testing-using-dotnet-test
+>dotnet new classlib -o PrimeService
+>mv .\PrimeService\Class1.cs PrimeService.cs
+>dotnet sln add ./PrimeService/PrimeService.csproj
+>dotnet new xunit -o PrimeService.Tests
+>dotnet add ./PrimeService.Tests/PrimeService.Tests.csproj
+ reference ./PrimeService/PrimeService.csproj
+>dotnet sln add ./PrimeService.Tests/PrimeService.Tests.csproj
+----
+
+=== Create a test
+
+The following is taken verbatim from the tutorial we follow:
+
+"
+A popular approach in test driven development (TDD) is to write a test before
+implementing the target code. This tutorial uses the TDD approach. The IsPrime
+method is callable, but not implemented. A test call to IsPrime fails. With
+TDD, a test is written that is known to fail. The target code is updated to
+make the test pass. You keep repeating this approach, writing a failing test
+and then updating the target code to pass.
+"
+
+We followed the tutorial but then jump straight into something a little more
+involved, following https://www.youtube.com/watch?v=iyxeNzXWWOQ[this] youtube
+tutorial.
+
+Steps:
+After doing the commands above:
+
+- run the test suite to make sure it runs
+- make it fail to check it fails
+
+
+After trying to get it to run correctly (the tutorial) we move back to the official documentation in order to try this,
+We still get an error; the problem is:
+
+
+[source, shell]
+----
+>% dotnet test
+>  Determining projects to restore...
+>  All projects are up-to-date for restore.
+>  PrimeService -> /Users/benjamin/projects/post_makers/csharp/tdd-using-dotnet-test/PrimeService/bin/Debug/net6.0/PrimeService.dll
+>  /Users/benjamin/projects/post_makers/csharp/tdd-using-dotnet-test/PrimeService.Tests/PrimeService_IsPrimeShould.cs(12,36):
+>  error CS0246: The type or namespace name 'PrimeService' could not be found
+>  (are you missing a using directive or an assembly reference?)
+>  [/Users/benjamin/projects/post_makers/csharp/tdd-using-dotnet-test/PrimeService.Tests/PrimeService.Tests.csproj]
+----
+
+We fixed it by finding the error on a namespace, it can also come from the
+omission/missing "using" keyword/ "using directive" in the top of a file, it is
+akin to the require or import in js
+
+Discover that the issue in following the youtube tutorial is that Brendon is using https://fluentassertions.com/introduction[Fluentassertions]
+It allows to use a slightly more idiomatic language syntax when using the testing framweorks.
+If it cannot find a supported framework it resorts back to using: `AssertFailedException`
+
+
+
+
+When we find it, the test finally passes. Writing another test intuitively, we do this:
+
+[source, csharp]
+----
+using Xunit;
+using Prime.Services;
+
+namespace Prime.UnitTests.Services
+{
+    public class PrimeService_IsPrimeShould
+    {
+        [Fact]
+        public void IsPrime_InputIs1_ReturnFalse()
+        {
+            var primeService = new PrimeService();
+            bool result = primeService.IsPrime(1);
+
+            Assert.False(result, "1 should not be prime");
+        }
+
+        // this is not the correct way to do it as it will make the test "bloated"
+
+        [Fact]
+        public void IsPrime_InputIs2_ReturnTrue()
+        {
+            var primeService = new PrimeService();
+            bool result = primeService.IsPrime(2);
+
+            Assert.True(result, "2 should be prime");
+        }
+    }
+}
+----
+
+This is not the correct way to do it as it will make the test "bloated", the correct way is instead to do this:
+
+----
+
+----
+
+
+
+
+This is to go at the beginning of this:
+
+"Prerequisites
+The .NET Core SDK, which provides the dotnet command-line tool. Starting in
+Visual Studio 2017, the dotnet CLI automatically installs with all .NET and
+.NET Core related workloads."
+
+In order to download packages be sure to have the SDK to have access to the command dotnet.
+https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli [This is the official documentation for working with packages]
+
+
+VISUAL STUDIO CODE AND Microsoft Visual studio not the same??
+https://stackoverflow.com/questions/60118911/how-to-use-install-library-in-c-in-visual-studio-code
+
+
+After skinning the moose for a while, or skinning the cat, we find the solution to the thing that was bugging us:
+
+We want to download fluent assertitions to use inside our project, we are trying to do the command
+`dotnet add package FluentAssertitioins [--version]`
+
+but it is not working, we keep on getting this error:
+
+----
+>benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test [main]
+>% dotnet add package FluentAssertions --version 6.7.0
+>Could not find any project in `/Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/`.
+>benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test [main]
+>% dotnet add package /Users/benjamin/.nuget/packages/ FluentAssertions --version 6.7.0
+>Unrecognized command or argument 'FluentAssertions'
+>Description:
+>  Add a NuGet package reference to the project.
+>
+>Usage:
+>  dotnet add [<PROJECT>] package <PACKAGE_NAME> [options]
+>
+>Arguments:
+>  <PROJECT>       The project file to operate on. If a file is not specified, the command will search the current directory for one. [default: /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/]
+>  <PACKAGE_NAME>  The package reference to add.
+>
+>Options:
+>  -v, --version <VERSION>            The version of the package to add.
+>  -f, --framework <FRAMEWORK>        Add the reference only when targeting a specific framework.
+>  -n, --no-restore                   Add the reference without performing restore preview and compatibility check.
+>  -s, --source <SOURCE>              The NuGet package source to use during the restore.
+>  --package-directory <PACKAGE_DIR>  The directory to restore packages to.
+>  --interactive                      Allows the command to stop and wait for user input or action (for example to complete authentication).
+>  --prerelease                       Allows prerelease packages to be installed.
+>  -?, -h, --help                     Show command line help.
+----
+
+We end up moving to the correct file and run the command again:
+
+----
+>% ls
+>2tdd-using-dotnet-test.sln      MorseConvert                    MorseConvert.Tests
+>benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test [main]
+>% cd MorseConvert
+>benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert [main]
+>% ls
+>MorseConvert.cs         MorseConvert.csproj     bin                     obj
+>benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert [main]
+>% dotnet add package FluentAssertions --version 6.7.0
+>  Determining projects to restore...
+>  Writing /var/folders/gn/82php6ls2b7971fynkd69bhm0000gn/T/tmpd6Lxda.tmp
+>info : X.509 certificate chain validation will use the fallback certificate bundle at '/usr/local/share/dotnet/sdk/6.0.401/trustedroots/codesignctl.pem'.
+>info : Adding PackageReference for package 'FluentAssertions' into project '/Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert/MorseConvert.csproj'.
+>info : Restoring packages for /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert/MorseConvert.csproj...
+>info :   GET https://api.nuget.org/v3-flatcontainer/fluentassertions/index.json
+>info :   OK https://api.nuget.org/v3-flatcontainer/fluentassertions/index.json 855ms
+>info :   GET https://api.nuget.org/v3-flatcontainer/fluentassertions/6.7.0/fluentassertions.6.7.0.nupkg
+>info :   OK https://api.nuget.org/v3-flatcontainer/fluentassertions/6.7.0/fluentassertions.6.7.0.nupkg 36ms
+>info :   GET https://api.nuget.org/v3-flatcontainer/system.configuration.configurationmanager/index.json
+>info :   OK https://api.nuget.org/v3-flatcontainer/system.configuration.configurationmanager/index.json 878ms
+>info :   GET https://api.nuget.org/v3-flatcontainer/system.configuration.configurationmanager/4.4.0/system.configuration.configurationmanager.4.4.0.nupkg
+>info :   OK https://api.nuget.org/v3-flatcontainer/system.configuration.configurationmanager/4.4.0/system.configuration.configurationmanager.4.4.0.nupkg 46ms
+>info :   GET https://api.nuget.org/v3-flatcontainer/system.security.cryptography.protecteddata/index.json
+>info :   OK https://api.nuget.org/v3-flatcontainer/system.security.cryptography.protecteddata/index.json 893ms
+>info :   GET https://api.nuget.org/v3-flatcontainer/system.security.cryptography.protecteddata/4.4.0/system.security.cryptography.protecteddata.4.4.0.nupkg
+>info :   OK https://api.nuget.org/v3-flatcontainer/system.security.cryptography.protecteddata/4.4.0/system.security.cryptography.protecteddata.4.4.0.nupkg 47ms
+>info : Installed System.Security.Cryptography.ProtectedData 4.4.0 from https://api.nuget.org/v3/index.json with content hash cJV7ScGW7EhatRsjehfvvYVBvtiSMKgN8bOVI0bQhnF5bU7vnHVIsH49Kva7i7GWaWYvmEzkYVk1TC+gZYBEog==.
+>info : Installed System.Configuration.ConfigurationManager 4.4.0 from https://api.nuget.org/v3/index.json with content hash gWwQv/Ug1qWJmHCmN17nAbxJYmQBM/E94QxKLksvUiiKB1Ld3Sc/eK1lgmbSjDFxkQhVuayI/cGFZhpBSodLrg==.
+>info : Installed FluentAssertions 6.7.0 from https://api.nuget.org/v3/index.json with content hash PWbow/R3MnYDP8UW7zh/w80rGb+1NufGoNJeuzouTo2bqpvwNTFxbDwF6XWfFZ5IuquL2225Um+qSyZ8jVsT+w==.
+>info : Package 'FluentAssertions' is compatible with all the specified frameworks in project '/Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert/MorseConvert.csproj'.
+>info : PackageReference for package 'FluentAssertions' version '6.7.0' added to file '/Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert/MorseConvert.csproj'.
+>info : Writing assets file to disk. Path: /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert/obj/project.assets.json
+>log  : Restored /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert/MorseConvert.csproj (in 3.9 sec).
+>benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert [main]
+>%
+----
+
+
+After installing the package fluent assertitions, we run the tests again:
+
+----
+>% dotnet test
+>  Determining projects to restore...
+>  Restored /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert.Tests/MorseConvert.Tests.csproj (in 309 ms).
+>  1 of 2 projects are up-to-date for restore.
+>  MorseConvert -> /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert/bin/Debug/net6.0/MorseConvert.dll
+>  MorseConvert.Tests -> /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert.Tests/bin/Debug/net6.0/MorseConvert.Tests.dll
+>Test run for /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert.Tests/bin/Debug/net6.0/MorseConvert.Tests.dll (.NETCoreApp,Version=v6.0)
+>Microsoft (R) Test Execution Command Line Tool Version 17.3.0 (arm64)
+>Copyright (c) Microsoft Corporation.  All rights reserved.
+>
+>Starting test execution, please wait...
+>A total of 1 test files matched the specified pattern.
+>[xUnit.net 00:00:00.56]     MorseConvert.Tests.MorseConvertShould.ReturnSingleCode_GivenOneLetter [FAIL]
+>  Failed MorseConvert.Tests.MorseConvertShould.ReturnSingleCode_GivenOneLetter [85 ms]
+>  Error Message:
+>   Expected result to be "._" with a length of 2, but "" has a length of 0, differs near "" (index 0).
+>  Stack Trace:
+>     at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
+>   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
+>   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+>   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+>   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
+>   at FluentAssertions.Primitives.StringEqualityValidator.ValidateAgainstLengthDifferences()
+>   at FluentAssertions.Primitives.StringValidator.Validate()
+>   at FluentAssertions.Primitives.StringAssertions`1.Be(String expected, String because, Object[] becauseArgs)
+>   at MorseConvert.Tests.MorseConvertShould.ReturnSingleCode_GivenOneLetter() in /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert.Tests/MorseConvert_TranslateShould.cs:line 16
+>
+>Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: < 1 ms - /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test/MorseConvert.Tests/bin/Debug/net6.0/MorseConvert.Tests.dll (net6.0)
+>benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/post_makers/csharp/2tdd-using-dotnet-test [main]
+>%
+----
+
+We get a clear error message as we can see above ^
+
+
+=== WOrking into a difficult test driven development decision
+
+at the cross road for implementing some logic in C#, unsure which direction to take, whether to keep it simple and thank self later, or jump into more difficult stuff, and not thank self.
+
+
+
+When working on the second test that tests for the deletion of  a character, at one stage I try to test by inputting something that is not in the dictionary:
+
+it gives this error message to the console:
+
+----
+% dotnet test
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  OldPhonePad -> /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad/bin/Debug/net6.0/OldPhonePad.dll
+  OldPhonePad.Tests -> /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad.Tests/bin/Debug/net6.0/OldPhonePad.Tests.dll
+Test run for /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad.Tests/bin/Debug/net6.0/OldPhonePad.Tests.dll (.NETCoreApp,Version=v6.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.3.0 (arm64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.48]     OldPhoneTranslate.Tests.OldPhonePad_TranslateShould.Translate_InputIs2_ReturnAnArray(expected: "B", input: "8 88777444666*664#") [FAIL]
+  Failed OldPhoneTranslate.Tests.OldPhonePad_TranslateShould.Translate_InputIs2_ReturnAnArray(expected: "B", input: "8 88777444666*664#") [< 1 ms]
+  Error Message:
+   System.Collections.Generic.KeyNotFoundException : The given key '8 88777444666*664#' was not present in the dictionary.
+  Stack Trace:
+     at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at OldPhone.Translate.OldPhonePad.Translate(String input) in /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad/OldPhonePad.cs:line 9
+   at OldPhoneTranslate.Tests.OldPhonePad_TranslateShould.Translate_InputIs2_ReturnAnArray(String expected, String input) in /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad.Tests/OldPhonePad_TranslateShould.cs:line 28
+
+Failed!  - Failed:     1, Passed:     3, Skipped:     0, Total:     4, Duration: 11 ms - /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad.Tests/bin/Debug/net6.0/OldPhonePad.Tests.dll (net6.0)
+benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp [main]
+%
+----
+
+It gives this very precise error message.
+
+== Difference between String and string
+
+https://stackoverflow.com/questions/439322/in-c-sharp-what-is-the-difference-between-the-upper-and-lower-case-string-string[go here]
+
+in short: "Nothing - both refer to System.String."
+
+=== Using Contains on a string:
+
+----
+
+> string word = "aword"
+  if (word.Contains('a'))
+  {
+  return true;
+  }
+(1,22): error CS1002: ; expected
+> string word = "aword"
+  if (word.Contains('a'))
+  {
+  return true;
+  };
+(1,22): error CS1002: ; expected
+> word.Contains('s');
+(1,1): error CS0103: The name 'word' does not exist in the current context
+> string word.Contains('s');
+(1,22): error CS1001: Identifier expected
+> string checking = word.Contains('s');
+(1,19): error CS0103: The name 'word' does not exist in the current context
+> exit
+benjamin@Benjamins-MacBook-Pro.local /Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp [main]
+% csharprepl
+Welcome to the C# REPL (Read Eval Print Loop)!
+Type C# expressions and statements at the prompt and press Enter to evaluate them.
+Type help to learn more, and type exit to quit.
+
+> String str = "ABC";
+(1,1): error CS0246: The type or namespace name 'Stiring' could not be found (are you missing a using directive or an assembly reference?)
+> String str = "ABC";
+
+> if (str.Contains('A'))
+  {
+  return "Hello";
+  }
+"Hello"
+> string letters = "ABC";
+
+> if (letters.Contains('A'))
+  {
+  return "working also";
+  }
+"working also"
+> String broken =
+----
+
+
+== Working with array in C#
+
+.csharepl How to create one, (shows the size), and get the index
+----
+> string[] = {"a", "b", "c"}
+(1,10): error CS1519: Invalid token '=' in class, record, struct, or interface member declaration
+> string[] letters = {"a", "b", "c"};
+
+> letters
+string[3] { "a", "b", "c" }
+> letters[0]
+"a"
+> letters[2]
+"c"
+>
+----
+
+.csharprepl How to remove an element according to its known value
+----
+>int[] numbers = { 1, 3, 4, 9, 2, 4 };
+>int numToRemove = 4;
+>int numIndex = Array.IndexOf(numbers, numToRemove);
+>numbers = numbers.Where((val, idx) => idx != numIndex).ToArray();
+
+> numbers
+int[5] { 1, 3, 9, 2, 4 }
+>
+----
+
+This is a much shorter way to write it, perhaps it is cleaner, perhaps it gives less information
+
+.csharprepl
+----
+>int[] numbers = { 1, 3, 4, 9, 2 };
+>numbers = numbers.Except(new int[]{4}).ToArray();
+----
+
+.Same thing with string:
+----
+> string[] letters = { "1", "3", "4", "9", "2", "*" };
+  letters = letters.Except(new string[]{"*"}).ToArray();
+
+> letters
+string[5] { "1", "3", "4", "9", "2" }
+>
+----
+
+INteresting stuff to look at again about regex.split in C#:
+
+----
+> string[] letters = { "1", "3", "4", "9", "2", "*" };
+  letters = letters.Except(new string[]{"*"}).ToArray();
+
+> letters
+string[5] { "1", "3", "4", "9", "2" }
+>
+> string[] array = {"1", "a", "c", "*"}
+  array
+(1,38): error CS1002: ; expected
+> string[] array = {"1", "a", "c", "*"};
+
+> array
+string[4] { "1", "a", "c", "*" }
+> if (array.Contains("*"))
+  {
+  return "yes sir"
+  };
+(3,17): error CS1002: ; expected
+> if (array.Contains("*"))
+  {
+  return "yes sir";
+  }
+"yes sir"
+> string pattern = @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|)";
+
+> Regex regex = new Regex(pattern);
+(1,1): error CS0246: The type or namespace name 'Regex' could not be found (are you missing a using directive or an assembly reference?)
+> using System.Text.RegularExpressions;
+
+> Regex regex = new Regex(pattern);
+
+> Regex
+(1,1): error CS0119: 'Regex' is a type, which is not valid in the given context
+> regex
+[(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|)]
+> string[] keypad_entries = regex.Split("2 2233");
+
+> keypad_entries
+string[11] { "", "2", "", "", " ", "22", "", "33", "", "", "" }
+> string pattern = @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)";              │············
+
+> Regex regex = new Regex(pattern);
+
+> string[] keypad_entries = regex.Split("2 2233");
+
+> keypad_entries
+string[7] { "", "2", " ", "22", "", "33", "" }
+> string[] keypad_entries = regex.Split("2 2233*");
+
+> keypad_entries
+string[7] { "", "2", " ", "22", "", "33", "*" }
+>
+----
+
+Continued work on Regex in csharprepl:
+.using Matches
+----
+> regex
+[(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|)]
+> string[] keypad_entries = regex.Split("2 2233");
+
+> keypad_entries
+string[11] { "", "2", "", "", " ", "22", "", "33", "", "", "" }
+> stringlLLexitn = @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)";
+(1,1): error CS0103: The name 'stringlLLexit' does not exist in the current context
+>
+  ┌────────────────────────────────┐─────────────────────────────────────┐
+  │|Encoder                        │ class System.Text.Encoder           │
+  │ EncoderExceptionFallback       │ Converts a set of characters into a │
+  │ EncoderExceptionFallbackBuffer │ sequence of bytes.                  │
+  │ EncoderFallback                │─────────────────────────────────────┘
+  └────────────────────────────────┘
+> string digits = "1 22333*88";    <-------------------------------------------------------ORIGINAL
+
+> string[] result = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,19): error CS0029: Cannot implicitly convert type 'System.Text.RegularExpressions.MatchCollection' to 'string[]'
+> System.Text.RegularExpressions.MatchCollection;
+(1,1): error CS0119: 'MatchCollection' is a type, which is not valid in the given context
+> string[] mixed = {1, "2", "a"};
+(1,19): error CS0029: Cannot implicitly convert type 'int' to 'string'
+> regex[] mixed = {1, "2", "a"};
+(1,1): error CS0246: The type or namespace name 'regex' could not be found (are you missing a using directive or an assembly reference?)
+> regex[] result = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)"));
+(1,75): error CS1003: Syntax error, ',' expected
+> regex[] result = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,1): error CS0246: The type or namespace name 'regex' could not be found (are you missing a using directive or an assembly reference?)
+> Regex[] result = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,18): error CS0029: Cannot implicitly convert type 'System.Text.RegularExpressions.MatchCollection' to 'System.Text.RegularExpressions.Regex[]'
+> Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+
+> 1 + 2
+3
+> Match[] matches = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,19): error CS0029: Cannot implicitly convert type 'System.Text.RegularExpressions.MatchCollection' to 'System.Text.RegularExpressions.Match[]'
+> string[] matches = Regex.Matches(string, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,34): error CS1525: Invalid expression term 'string'
+> string[] matches = Regex.Matches(digit, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,34): error CS0103: The name 'digit' does not exist in the current context
+> string[] matches = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,20): error CS0029: Cannot implicitly convert type 'System.Text.RegularExpressions.MatchCollection' to 'string[]'
+> MatchCollection[] matches = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,29): error CS0029: Cannot implicitly convert type 'System.Text.RegularExpressions.MatchCollection' to 'System.Text.RegularExpressions.MatchCollection[]'
+> MatchCollection matches = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+
+> string[] result = MatchCollection matches = Regex.Matches(digits, @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+)");
+(1,35): error CS1002: ; expected
+> matches
+MatchCollection(4) { [1], [22], [333], [88] }
+>
+----
+
+We were able to get the string separated into a collection delimited by the conditoin set in the regex, ommitiing (currently) the *
+
+.Converting array to list to Remove elements
+----
+> List<object> list = keypad_entries.ToList();
+(1,21): error CS0029: Cannot implicitly convert type 'System.Collections.Generic.List<string>' to 'System.Collections.Generic.List<object>'
+> List<object> list = keypad_entries.ToList<object>();
+
+> list
+List<object>(7) { "", "2", " ", "22", "", "33", "" }
+> list.RemoveAll(element => element == " " || "");
+(1,27): error CS0019: Operator '||' cannot be applied to operands of type 'bool' and 'string'
+> list.RemoveAll(element => element == " ");
+
+> list
+List<object>(7) { "", "2", " ", "22", "", "33", "" }
+> list.RemoveAll(element => element == "" "");
+(1,41): error CS1003: Syntax error, ',' expected
+> list.RemoveAll(element => element == " ");
+
+> list
+List<object>(7) { "", "2", " ", "22", "", "33", "" }
+> list.RemoveAll(element => element == "");
+
+> list
+List<object>(4) { "2", " ", "22", "33" }
+> list.RemoveAll(element => element == " ");
+
+> list
+List<object>(4) { "2", " ", "22", "33" }
+>
+----
+Unable to get rid of " " but able to get rid of ""????
+
+.Ok, we have succeeded in getting rid of the spaces and the character space: "" && " "
+----
+> keypad_entries
+string[13] { "", "2", "", "1 ", "", "2 ", "", "1 ", "", "22", "", "33", "" }
+> string pattern = @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*)";
+   Regex regex = new Regex(pattern);
+   string[] keypad_entries = regex.Split("21 2 1 2233");<-----------------------------------------------TOOK
+
+> keypad_entries
+string[13] { "", "2", "", "1", " ", "2", " ", "1", " ", "22", "", "33", "" }
+> keypad_entries.RemoveAll(i => i == "");
+(1,16): error CS1061: 'string[]' does not contain a definition for 'RemoveAll' and no accessible extension method 'RemoveAll' accepting a first argument of type 'string[]' could be found (are you missing a using directive or an assembly reference?)
+> keypad_entries
+string[13] { "", "2", "", "1", " ", "2", " ", "1", " ", "22", "", "33", "" }
+> var correction = keypad_entries.ToList(); < ------------------------------------------------------------TOOk
+
+> correction
+List<string>(13) { "", "2", "", "1", " ", "2", " ", "1", " ", "22", "", "33", "" }
+> correction.Remove(" ");
+
+> correction
+List<string>(12) { "", "2", "", "1", "2", " ", "1", " ", "22", "", "33", "" }
+> correction.RemoveAll(" ");
+(1,22): error CS1503: Argument 1: cannot convert from 'string' to 'System.Predicate<string>'
+> correction.RemoveAll(i => i == " ");
+
+> correction
+List<string>(10) { "", "2", "", "1", "2", "1", "22", "", "33", "" }
+> correction.RemoveAll(n => n == "");
+
+> correction
+List<string>(6) { "2", "1", "2", "1", "22", "33" }
+>
+----
+
+== Extra info on csharprepl
+
+https://lioncoding.com/csharprepl-the-magic-command-line-c-repl/[look here]
+
+The correction of the array also works by doing it a for everything we need to get rid of:
+
+----
+> string pattern = @"(0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*)";
+  Regex regex = new Regex(pattern);
+  string[] keypad_entries = regex.Split("21 2 1 2233");
+
+> keypad_entries
+string[13] { "", "2", "", "1", " ", "2", " ", "1", " ", "22", "", "33", "" }
+> correction.RemoveAll(i => (i == " " || i == ""));
+(1,1): error CS0103: The name 'correction' does not exist in the current context
+> keypad_entries.RemoveAll(i => (i == " " || i == ""));
+(1,16): error CS1061: 'string[]' does not contain a definition for 'RemoveAll' and no accessible extension method 'RemoveAll' accepting a first argument of type 'string[]' could be found (are you missing a using directive or an assembly reference?)
+> var correction = keypad_entries.ToList();
+
+> correction.RemoveAll(i => (i == " " || i == ""));
+
+> correction
+List<string>(6) { "2", "1", "2", "1", "22", "33" }
+----
+
+.We can iterate over everything inside the array, once we have subtracted the things we do not need
+----
+> foreach (string i in sequence)
+  {
+  return ValueLookup[i];
+  }
+"C"
+>
+
+>
+
+> foreach (string i in sequence)
+  {
+  return ValueLookup[i+];
+  }
+(3,22): error CS1525: Invalid expression term ']'
+> foreach (string i in sequence)
+  {
+  return ValueLookup[i++];
+  }
+(3,20): error CS1656: Cannot assign to 'i' because it is a 'foreach iteration variable'
+> sequence
+string[3] { "3", "1", "2" }
+> sequence.Select(s => s.Replace(s, ValueLookup[s]).ToArray();
+(1,60): error CS1026: ) expected
+> sequence.Select(s => s.Replace(s, ValueLookup[s])).ToArray();
+
+> sequence
+string[3] { "3", "1", "2" }
+> string[] sequence2 = sequence.Select(s => s.Replace(s, ValueLookup[s])).ToArray();
+
+> sequence2
+string[3] { "C", "A", "B" }
+> string tada = string.Join("", sequence2);
+
+> tada
+"CAB"
+>
+----
+
+Finally got some progress...
+
+****
+Note: Change the test and make sure you can first put letters together instead.
+Then, once you have done that, you can delete the thing that came before the asteix, this is the better way to approach this.
+****
+
+.Finding the index of something in a list
+----
+>
+> string[] array = {"1", "7", "3", "9", "*", "88"}
+  array
+(1,49): error CS1002: ; expected
+> string[] array = {"1", "7", "3", "9", "*", "88"};
+
+> array
+string[6] { "1", "7", "3", "9", "*", "88" }
+> array.ToList();
+
+> var list = array.ToList();
+
+> list
+List<string>(6) { "1", "7", "3", "9", "*", "88" }
+> int index = list.FindIndex(i => i == "*");
+
+> index
+4
+>
+----
+
+
+.Removing an element according to its index
+----
+> list
+List<string>(6) { "1", "7", "3", "9", "*", "88" }
+> int index = list.FindIndex(i => i == "*");
+
+> index
+4
+> list.RemoveAt(index - 1);
+
+> list
+List<string>(5) { "1", "7", "3", "*", "88" }
+> list.RemoveAt(index);
+
+> list
+List<string>(4) { "1", "7", "3", "*" }
+> list.FindIndex(i => i == "*");
+
+> int index = list.FindIndex(i => i == "*");
+
+> index
+3
+> list.RemoveAt(index - 1);
+
+> list
+List<string>(3) { "1", "7", "*" }
+> list.RemoveAt(index);
+Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+>
+----
+
+
+.The error we keep on getting resulting from 'int'
+----
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+/Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad/OldPhonePad.cs(22,30): error CS1061: 'int' does not contain a definition for 'FindIndex' and no accessible extension method 'FindIndex' accepting a first argument of type 'int' could be found (are you missing a using directive or an assembly reference?) [/Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad/OldPhonePad.csproj]
+/Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad/OldPhonePad.cs(23,33): error CS1061: 'int' does not contain a definition for 'RemoveAt' and no accessible extension method 'RemoveAt' accepting a first argument of type 'int' could be found (are you missing a using directive or an assembly reference?) [/Users/benjamin/projects/techtests/ironsoftware/ironsoftware_csharp/OldPhonePad/OldPhonePad.csproj]
+----
+Currently working through the repl to try to fix it
+
+.In the repl, we got to this:
+----
+> entries
+string[13] { "", "22", "", "33", " ", "3", "", "*", "", "44", "", "*", "" }
+> var list = entries.ToList();
+
+> list
+List<string>(13) { "", "22", "", "33", " ", "3", "", "*", "", "44", "", "*", "" }
+> var sanitize = list.RemoveAll(element => (element == " " || element == ""));
+
+> sanitize
+7
+> entries
+string[13] { "", "22", "", "33", " ", "3", "", "*", "", "44", "", "*", "" }
+> var sanity = entries.ToList();
+
+> sanity
+List<string>(13) { "", "22", "", "33", " ", "3", "", "*", "", "44", "", "*", "" }
+> sanity.RemoveAll(i => (i == " " || i == ""));
+
+> sanity
+List<string>(6) { "22", "33", "3", "*", "44", "*" }
+> int index = sanity.FindIndex(i => i == "*");
+
+> index
+3
+> sanity.RemoveAt(index - 1);
+
+> sanity
+List<string>(5) { "22", "33", "*", "44", "*" }
+> int indexx = sanity.FindIndex(i => i == "*");
+
+> indexx
+2
+> sanity.RemoveAt(indexx);
+
+> sanity
+List<string>(4) { "22", "33", "44", "*" }
+> int index = sanity.FindIndex(i => i == "*");
+
+> index
+3
+> sanity.RemoveAt(index);
+
+> sanity
+List<string>(3) { "22", "33", "44" }
+> if sanity.Contains("33")
+  {
+  return "Hello";
+  }
+(1,4): error CS1003: Syntax error, '(' expected
+> if (sanity.Contains("33"))
+  {
+  return "Hello";
+  }
+"Hello"
+> sanity
+List<string>(3) { "22", "33", "44" }
+>
+----
+
+The tests ran and the error message was gone, once we stopped using 'var' and reassining 'entries' list to new var names.
+However, after introducing a loop, the test stopped running all together. I suspect it was because of an infinite loop.
+Not sure though. I will restart and see. It ran, then stopped working and would just wait/pend.
+
+
+= More Notes on Repl in csharp
+
+https://github.com/dotnet-script/dotnet-script[The dot-net script repl] can be used to load a script file using a https://www.codeproject.com/Articles/5273898/Code-Generation-using-Csharp-Scripts-CSX-Scripts-i[csx script]
+https://lioncoding.com/csharprepl-the-magic-command-line-c-repl/[This] repl seems better imo as it supports tab complete
+Another resource https://stackoverflow.com/questions/36866654/how-to-create-csx-file-in-visual-studio[ is this conversation]
+
+There is one difference https://stackoverflow.com/a/30797[between string and String]
+
+.List as an argument to method
+https://stackoverflow.com/questions/32539378/passing-a-list-into-a-method-modify-the-list-within-the-method-without-affectin[pass a list into another method]
+
+You cannot have the same name for a Namespace and a class see https://stackoverflow.com/questions/18731415/namespace-and-class-with-the-same-name[here] and https://www.geeksforgeeks.org/c-sharp-namespaces/[here also].

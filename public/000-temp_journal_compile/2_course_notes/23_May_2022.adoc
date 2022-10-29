@@ -1,0 +1,30 @@
+#NOTES
+
+__see demo on creating RSPec for sinfle class__
+
+6.) Design a class
+9.) Desing a class system
+
+(Less time pairing today)
+[2 hours]
+
+-----------------------------------------------
+Notes from single moethod TDD
+Design Recipe
+
+-----------------------------------------------
+
+Spike can free code to a certain point.
+
+But when doing a more complex problem, TDD is a necessary process that allows you to do that.
+
+.Notes from test driving:
+
+RSpec test created around same time as the program.
+Just before (3 minutes according to ichael).
+
+RSpec create, check that is passes
+
+Then try to break it: "mutation" to verify what it does  what and if you can break the test.
+
+

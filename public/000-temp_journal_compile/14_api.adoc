@@ -1,0 +1,103 @@
+= *API*
+
+An application programming interface (API) is a connection between computers or
+between computer programs. It is a type of software interface, offering a
+service to other pieces of software. A document or standard that describes how
+to build or use such a connection or interface is called an API specification.
+
+== Difference between API and REST API
+
+image::{sourcedir}/api_image.jpg[width=10%, align="center"]
+
+[.text-center]
+*_API image..._*
+
+
+The first thing to understand is that API is the superset while REST API is the
+subset. This means all REST APIs are APIs while not all APIs are REST APIs. API
+is a broad term while REST API is a specialized API. There are a lot of
+differences between an API and REST API. REST stands for Representational State
+Transfer while API stands for Application Program Interface. In simple words,
+the function of API is to connect one application with the data and services of
+another application by granting all the required permissions. Therefore, it is
+the connector between two applications, and it is an essential part of any
+application development. A REST API is a web service API which uses URIs and
+HTTP protocol and JSON for data format. The reason for using REST APIs over
+others is due to its simplicity in development with limited resource and fewer
+security requirements, browser compatibility, scalability, all of which are
+desired for web services.
+
+
+Difference Between API and REST API –
+
+
+Difference Between API and REST API – While API is
+basically a set of functions and procedures that allow one application to
+access the feature of other application, REST is an architectural style for
+networked applications on the web. It is limited to client-server based
+applications. REST is a set of rules or guidelines to build a web API. There
+are many ways to build a web API, and REST is a standard way that will help in
+building it faster and also for third-parties to understand it better.
+Generally, the comparison between APIs is done between REST and SOAP.  SOAP is
+more complex as it offers less freedom and dictates a lot of standards for
+implementation. Therefore, REST API is the more preferred style.
+
+Feature Exclusive To REST APIs-
+
+The reason why REST API is more popular than other
+types of APIs is that it uses the existing protocols. In most of the other
+types of APIs, the developer has to define a protocol for the functioning of
+the APIs. However, REST API uses HTTP and therefore, there is no need for
+installing any additional libraries for creating and functioning a REST API.
+Another advantage of using REST API is that it offers great flexibility. It can
+handle different types of calls and returns in different data formats. It is
+not confined to XML only like SOAP, and you can return in XML, JSON, YAML, and
+others using REST API.
+
+
+
+
+Client-Server – While most of the APIs follow
+application-application format, REST API strictly operates on the web concept
+of client and server. The client and server are separated from one another, and
+each of them can grow individually. This is what flexibility is all about.
+
+
+
+Stateless – Not all APIs are stateless, and REST API is which means that the
+call request to the API can be made individually and independently. Each call
+must have all the data necessary to execute the call. Moreover, it is due to
+its stateless property, the storage of cacheable data is possible. Hence, the
+speed of executing the calls and handling a large number of incoming calls can
+be done faster. Interface – Not many APIs can decouple the client from the
+server or one application from another. REST API does it because of its uniform
+interface, and it allows the applications to evolve independently without
+tightly coupling the services, models, and actions to the API layer.
+
+
+
+Scalability – Scalability is a major issue in general APIs. It is not so in
+REST APIs, and it is because of its layered architecture that works together.
+They form a hierarchy, and therefore, the modular application is possible which
+is the key to scalability.
+
+Miscellaneous – REST APIs are the only few APIs that
+allow code on demand to be transmitted. One of the biggest advantages has to be
+the fact that the users do not have to know the function names and the
+parameters in a specific order to execute the REST APIs. It is independent o
+the type of platform or language you are using. It is highly reliable and
+absolutely simple and transparent in its execution. However, no API is void of
+disadvantages. Newer developers find it slightly difficult to implement REST
+APIs because of its statelessness. It fails to maintain the state within
+sessions.
+
+Conclusion – REST API is a unique API type, and there are a variety
+of sectors where it is applicable. Currently, it is extremely popular among
+mobile and cloud applications, social networking platforms, automated
+applications. Therefore, you should pay enough attention to learn REST API when
+you are learning APIs as it is the future of APIs. SOAP API is the main
+contender against it, but the application architects are more inclined to REST
+APIs these days than SOAP APIs which is also extremely popular. They find it
+more important for application integrated design.
+
+*For the source of this see:* https://www.freelancinggig.com/blog/2018/11/02/what-is-the-difference-between-api-and-rest-api/

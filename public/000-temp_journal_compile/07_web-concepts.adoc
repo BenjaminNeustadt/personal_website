@@ -1,0 +1,32 @@
+= *Web Concepts*
+:doctype: article
+
+== CRUD
+
+== HTTP
+
+== FrontEnd/Backend disctinction
+
+== API
+
+=== RESTFUL API
+
+== JSON
+
+=== GeoJson
+
+== GraphQL
+
+== Databases
+
+=== Relational (SQL)
+
+==== PostgreSQL
+
+=== non relational (NO-SQL)
+
+==== MongoDB
+
+=== Object Relational Mapper (ORM)
+
+==== Mongoose

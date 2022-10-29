@@ -1,0 +1,12 @@
+Admonitions used in this document:
+
+NOTE: This is used for notes, noteworthy items.
+
+TIP: This is used for tips, usually short or guiding material
+
+IMPORTANT: This is used for important information, things that may be more critical than a tip
+
+CAUTION: This is used to provide caution, something may not be apparent, or may cause other problems.
+
+WARNING: This is to note great care should be given to this information, as it may cause something irrevocable to happen, or otherwise cause problems.
+

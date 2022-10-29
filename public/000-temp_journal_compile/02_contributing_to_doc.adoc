@@ -1,0 +1,98 @@
+= *Contributing to this document*
+
+Contributing to this document will be easier if we follow some style conventions.
+
+.Single Sentence Per Line (((formatting, Single Sentence Per Line)))
+[quote, Brian W. Kernighan, 1974]
+____
+Most documents go through several versions (always more than you expected) before they are finally finished.
+Accordingly, you should do whatever possible to make the job of changing them easy.
+
+First, when you do the purely mechanical operations of typing, type so subsequent editing will be easy.
+Start each sentence on a new line.
+Make lines short, and break lines at natural places, such as after commas and semicolons, rather than randomly.
+Since most people change documents by rewriting phrases and adding, deleting and rearranging sentences, these precautions simplify any editing you have to do later.
+____
+
+In the case of this document, we will prefer "One Sentence, One Line".
+
+
+== Admonitions
+
+NOTE: This is used for notes, noteworthy items.
+
+TIP: This is used for tips, usually short or guiding material
+
+IMPORTANT: This is used for important information, things that may be more critical than a tip
+
+CAUTION: This is used to provide caution, something may not be apparent, or may cause other problems.
+
+WARNING: This is to note great care should be given to this information, as it may cause something irrevocable to happen, or otherwise cause problems.
+
+== Repo branches
+
+This document source is located at: keybase://team/zeinzzukotp/Notes
+
+* The stable branch is called `unbroken`.
+  This causes a problem when we attempt to clone it, as we are by default looking for a `main` or `master` branch to exist.
+* We `git switch -c unbroken`,
+  We `git add origin [address]`.
+  We then `git fetch --all`, it pulls all the branches down locally.
+
+You can send e-mail patches to keeperotphones+patches with the subject prefix
+set to "PATCH zeinzzukotp/Notes".
+
+.Cloning the Notes repository
+[source, shell]
+----
+$ mkdir Notes
+$ cd Notes
+$ git init .
+----
+
+This shows:
+
+[source, plain]
+----
+Initialized empty Git repository in /tmp/sandbox/Notes/.git/
+----
+
+[source, shell]
+----
+$ git remote add origin keybase://team/zeinzzukotp/Notes
+$ git fetch --all
+----
+
+This will show:
+
+[source, plain]
+----
+Initializing Keybase... done.
+Syncing with Keybase... done.
+Counting and decrypting: 13 objects... done.
+Reading and decrypting metadata: (100.00%) 13/13 objects... done.
+Fetching and decrypting objects: (100.00%) 13/13 objects... done.
+Syncing encrypted data to Keybase: (100.00%) 7.58/7.58 KB... done.
+From keybase://team/zeinzzukotp/Notes
+ * [new branch]      unbroken   -> origin/unbroken
+----
+
+[source, shell]
+----
+$ git checkout unbroken
+----
+
+This will show:
+
+[source, plain]
+----
+branch 'unbroken' set up to track 'origin/unbroken'.
+Already on 'unbroken'
+----
+
+<<<
+
+ifdef::env-pdf[]
+[index]
+= Index
+endif::[]

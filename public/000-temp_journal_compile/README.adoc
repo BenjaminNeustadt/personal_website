@@ -1,0 +1,22 @@
+= README
+
+This repository contains notes about anything.  It is set up to create an HTML
+or PDF book format for this information, and uses Asciidoctor to do so.
+
+In order to create this as a compiled resource, you can run:
+
+[source, sh]
+----
+make
+----
+
+This command will make the `book.pdf` file.
+
+If you would prefer to make the HTML file, then the following command is required instead:
+
+[source, sh]
+----
+make html
+----
+
+== Contributing?  Please do the needful.

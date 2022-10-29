@@ -1,0 +1,6 @@
+= Java Resources
+
+= Namespaces
+https://www.geeksforgeeks.org/c-sharp-namespaces/
+
+https://stackify.com/oop-concept-abstraction/

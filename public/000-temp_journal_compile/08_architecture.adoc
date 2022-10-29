@@ -1,0 +1,13 @@
+= *Architecture*
+
+== Design Patterns for code
+
+== Singleton class
+
+== Web Design patterns
+
+== Model View Controller (MVC)
+
+== Monolith
+
+== Microservices
