@@ -1,9 +1,20 @@
 require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/reloader'
 
-get '/' do
-  erb:'page/home'
-end
+class WebSite < Sinatra::Base
 
-get '/documentations' do
-  erb:'page/journal'
+  configure :development do
+    register Sinatra::Reloader
+  end
+
+  get '/' do
+    erb:'page/home'
+  end
+
+  get '/documentations' do
+    erb:'page/journal'
+  end
+ 
+  run! if app_file == $0
 end
