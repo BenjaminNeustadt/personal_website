@@ -1,9 +1,0 @@
-= *Resources*
-
-== Books
-
-== Why's Poignant Guide
-
-== Well Grounded Rubyist
-
-include::4_books/well_grounded_rubyist.adoc[]
