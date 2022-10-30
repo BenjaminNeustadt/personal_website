@@ -4,10 +4,6 @@ require 'sinatra/reloader'
 
 class WebSite < Sinatra::Base
 
-  configure :development do
-    register Sinatra::Reloader
-  end
-
   get '/' do
     erb:'page/home'
   end
