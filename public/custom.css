@@ -14,12 +14,37 @@
  margin-left: 30px;
 }
 
+/*NAVBAR business
+*/
+
 .navbar {
   border: none;
-  box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
+  /* box-shadow: 0 1px 20px 0 rgba(0,0,0,.1); */
   padding-left: 10px;
   padding-right: 10px;
+  font-weight: 800;
+  background-color: lightgray;
+  padding-bottom: 0;
+  padding-top: 0;
 }
+
+.navbar-nav {
+padding-top: 10px;
+}
+
+.navbar-brand:hover {
+  color: darkblue;
+}
+
+.nav-link:hover {
+  color: darkblue;
+}
+.navbar-nav {
+padding-top: 10px;
+}
+
+/* END NAVBAR business
+*/
 
 .material {
   margin-left: 20px;
@@ -40,7 +65,8 @@ body {
 
 #toggle-btn {
   padding: 0.5em;
-  font-weight: 800;
+  font-weight: 700;
+  border-radius:5%;
 }
 
 .night-theme-img {
@@ -67,6 +93,7 @@ body {
 
 .dark-mode-toggle-light {
   background: white;
+  border: none;
 }
 
 #theme {
