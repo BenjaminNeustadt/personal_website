@@ -15,6 +15,6 @@ class WebSite < Sinatra::Base
   get '/blog' do
     erb:'page/blog'
   end
- 
+
   run! if app_file == $0
 end
