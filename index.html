@@ -7,7 +7,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="./public/custom.css">
 
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg">
           <a class="navbar-brand" href="/">Benjamin Neustadt</a>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -18,28 +18,32 @@
                 <a class="nav-link" href="./journal.html">Documentation Notes</a>
               </li>
               <li class="nav-item">
-                 <form action="https://github.com/BenjaminNeustadt/" method="get" target="_blank" rel="noopener noreferrer">
+                <form action="https://github.com/BenjaminNeustadt/" method="get" target="_blank" rel="noopener noreferrer">
                   <button type="submit"style="border:none;background-color:transparent;">
-                      <img src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg" width="25" height="25" style="margin-top:10px; margin-left:8px;">
+                    <img src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/github-icon.svg" width="25" height="25" style="margin-top:10px; margin-left:8px;">
                   </button>
                 </form>
               </li>
             </ul>
           </div>
-          <button id="toggle-btn" class="dark-mode-toggle">Theme
-            <img id="theme-img" class="night-theme-img"  width="58" height="58" alt=""/></button>
         </nav>
       </header>
     <main class="theme">
        <div class="material">
-        <div class="elements">
+        <div class="elements" align="center">
 
-            <h3 style="margin-bottom:30px;">👋 Hi, welcome to my personal site.</h3>
+          <h3 id="heading" >
+            Hi, my name is <a id="name">Benjamin Neustadt</a> welcome to my personal site.
+          </h3>
 
-          <a>
-            I'm a <b>software developer</b>, career-changer, and graduate of <a href="https://makers.tech/" id="Link">Makers</a>.<br>
-            Throughout my training I have worked autonomously and in groups (using Agile methods),<br>
-            building web-applications using testing-frameworks to ensure code quality.<br><br>
+          <div class="container">
+            <p>
+            I'm a <b>software developer</b>, graduate of <a href="https://makers.tech/" id="Link">Makers</a>.<br>
+            I love to work to build engaging and useful web applications.
+            I love to write clean and maintanable code, using different testing frameworks.
+            I'm currently focusing on Ruby, but open to all languages and interesting projects.
+            <br>
+            <br>
 
             Some of my technical skills:<br>
             - the <b>foundations of object oriented programming</b> in <a href="https://www.ruby-lang.org/en/" id="Link">Ruby</a>, and <a href="https://javascript.info/js" id="Link">JavaScript</a><br>
@@ -47,7 +51,8 @@
             - design concepts, such as <b>SOLID principles</b><br><br>
 
             I also have a bunch of my documentation journalling <a href='./journal.html' id="Link">here</a>.<br>
-          </a>
+          </p>
+          </div>
 
         </div>
 
@@ -74,6 +79,5 @@
         </div>
 
     </main>
-    <script src="./public/js/main.js"></script>
   </body>
 </html>
