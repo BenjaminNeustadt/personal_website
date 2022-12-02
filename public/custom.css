@@ -5,6 +5,7 @@
 
 a {
   color:#ffc0cb;
+  text-decoration: none;
 }
 
 .container {
@@ -110,6 +111,11 @@ body {
   z-index 0.5s;
 }
 
+#inner-project {
+  margin-bottom:15px;
+  margin-left: auto;
+}
+
 .project:hover {
   transform: scale(1.3);                  /*  added property  */
   z-index: 10;
@@ -128,8 +134,9 @@ details>summary span.icon {
   width: 24px;
   height: 24px;
   transition: all 0.3s;
-  margin-left: auto;
+  margin-left: none;
   display: inline;
+  color: white;
 }
 
 details[open] summary span.icon {
@@ -145,3 +152,9 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+#summary-title{
+  display:table;
+  font-family: Open Sans,arial,sans-serif;
+  font-weight:700;
+  color: pink;
+}
