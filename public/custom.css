@@ -25,7 +25,7 @@ a {
 
 #name {
   font-weight: bold;
-  color: pink;
+  color:#ffc0cb;
   text-shadow: 1px 2px 0.5px grey;
 }
 
@@ -166,3 +166,12 @@ summary::-webkit-details-marker {
   font-weight:700;
   color: white;
 }
+
+#skills-title{
+  margin-bottom:5px;
+  display:table;
+  font-family: Open Sans,arial,sans-serif;
+  font-weight:700;
+  color:#ffc0cb;
+}
+
