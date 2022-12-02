@@ -129,6 +129,7 @@ details>summary span.icon {
   height: 24px;
   transition: all 0.3s;
   margin-left: auto;
+  display: inline;
 }
 
 details[open] summary span.icon {
