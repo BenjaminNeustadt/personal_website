@@ -20,8 +20,11 @@ a {
   align: justify;
 }
 
-#projecttext {
+
+#projects {
+  position: relative;
 }
+
 
 #name {
   font-weight: bold;
@@ -107,7 +110,7 @@ body {
 }
 
 .project {
-  border:2px dotted #808080;
+  border:2px solid #808080;
   padding:20px;
   margin:20px;
   padding-right:20px;
@@ -129,6 +132,28 @@ body {
 #inner-project {
   margin-bottom:15px;
   margin-left: auto;
+  position: absolute;
+}
+
+#about-me{
+/*stuff will go here maybe
+*/
+}
+
+.project:hover .text {
+  display: block;
+}
+
+.text {
+  display: none;
+}
+
+.summary{
+  font-style: "Open Sans", arial, sans-serif ;
+  font-weight: 700;
+  font-size: 17px;
+  color: white;
+  margin-bottom: 15px;
 }
 
 
