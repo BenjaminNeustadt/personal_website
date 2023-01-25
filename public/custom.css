@@ -185,13 +185,6 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-#summary-title{
-  display:table;
-  font-family: Open Sans,arial,sans-serif;
-  font-weight:700;
-  color: white;
-}
-
 #skills-title{
   margin-bottom:5px;
   display:table;
