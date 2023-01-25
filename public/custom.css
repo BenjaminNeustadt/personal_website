@@ -126,7 +126,7 @@ body {
   transform: scale(1.3);                  /*  added property  */
   z-index: 10;
   background-color:#35353a;
-  transform-origin: ;
+  transition: all 0.7s ease-in-out;
 }
 
 #inner-project {
