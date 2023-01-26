@@ -89,12 +89,6 @@ padding-top: 10px;
 /* END NAVBAR business
 */
 
-.material {
-  margin-left: 20px;
-  padding-top: 20px;
-}
-
-
 
 /* Project boxes
  */
@@ -187,14 +181,6 @@ summary::-webkit-details-marker {
   color:#ffc0cb;
 }
 
-/* #scene{
-  top:0;
-  left:0;
-  /* width: 100vw;
-  height: 100vh; */
-  z-index:-1;
-} */
-
 body {
   background-color:#35353a;
   position: relative;
@@ -208,4 +194,21 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
+}
+
+.material {
+  margin-left: 20px;
+  padding-top: 20px;
+}
+
+.journal-theme{
+  background-color:#35353a;
+}
+
+.project{
+  background-color:#35353a;
+}
+
+.container{
+  background-color:#35353a;
 }
