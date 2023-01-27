@@ -12,6 +12,24 @@ var cubes = [];
 var size = 1;
 var cubeGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
 var cubeMaterial = new THREE.MeshDepthMaterial();
+// var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+// var cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+// var color = new THREE.Color( 0xffc0cb );
+// cubeMaterial.color = color;
+
+// Lights
+
+var light = new THREE.DirectionalLight(0xffffff);
+light.position.set(1, 1, 1);
+scene.add(light);
+
+// var light2 = new THREE.AmbientLight(0xffffff);
+// light2.position.set(1, 1, 1);
+// scene.add(light2);
+
+// var light3 = new THREE.PointLight(0xffffff, 1, 50);
+// light3.position.set(5,5,5);
+// scene.add(light3);
 
 var gap = 0.1;
 for (var x = -size; x <= size; x += (0.1 + gap)) {
@@ -25,7 +43,7 @@ for (var x = -size; x <= size; x += (0.1 + gap)) {
   }
 }
 
-camera.position.z = 5;
+camera.position.z = 4;
 
 var animate = function () {
     requestAnimationFrame( animate );
@@ -39,5 +57,12 @@ var animate = function () {
 
     renderer.render( scene, camera );
 };
+
+// Update rendere size
+window.addEventListener("resize", function () {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+});
 
 animate();
