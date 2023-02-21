@@ -1,3 +1,7 @@
+html * {
+  font-family: "Dyslexia Font" !important;
+}
+
 #noneall a{
   text-decoration: none;
   text-align: justify;
@@ -99,6 +103,9 @@ padding-top: 10px;
 }
 
 #projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   position: relative;
 }
 
@@ -113,6 +120,12 @@ padding-top: 10px;
   z-index: 0;
   transition: transform 0.5s;
   box-shadow: 3px 3px 1px #808080, 8px 8px 1px black;
+  justify-content: center;
+  text-align: center;
+  width: 320px;
+  height: 320px;
+  border: 1px solid black;
+  margin: 10px;
 }
 
 .project:hover {
@@ -124,13 +137,13 @@ padding-top: 10px;
   cursor: pointer;
 }
 
-.project:hover .text {
+.text{
   display: block;
 }
 
-.text {
-  display: none;
-}
+/* .project:hover .text {
+  display: block;
+} */
 
 
 #inner-project {
