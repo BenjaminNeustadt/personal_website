@@ -1,5 +1,5 @@
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 100);
+var camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 1, 100);
 
 const container = document.getElementById("three-container");
 var renderer = new THREE.WebGLRenderer();
@@ -43,17 +43,17 @@ for (var x = -size; x <= size; x += (0.1 + gap)) {
   }
 }
 
-camera.position.z = 4;
+camera.position.z = 6;
+camera.position.y = 4;
 
 var animate = function () {
     requestAnimationFrame( animate );
 
     scene.rotation.x += 0.01;
     scene.rotation.y += 0.01;
-    scene.position.x = Math.cos(Date.now() * 0.00051) * 4;
+    scene.position.x = Math.cos(Date.now() * 0.00051) * 8;
     /* scene.position.x = Math.sin(Date.now() * 0.001) * 2; */
     /* scene.position.x += 0.01; */
-   
 
     renderer.render( scene, camera );
 };
