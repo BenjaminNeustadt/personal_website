@@ -65,17 +65,17 @@ a {
   padding-left: 30px;
   padding-right: 10px;
   font-weight: 800;
-  background-color: white;
+  background-color: var(--background);
   padding-bottom: 0;
   padding-top: 0;
 }
 
 .nav-link {
-  color: #d3d3d3;
+  color: var(--base);
 }
 
 .navbar-brand {
-  color: #d3d3d3;
+  color: var(--base);
 }
 
 .navbar-nav {
@@ -83,11 +83,11 @@ padding-top: 10px;
 }
 
 .navbar-brand:hover {
-  color: #ffc0cb;
+  color: var(--highlight);
 }
 
 .nav-link:hover {
-  color: #ffc0cb;
+  color: var(--highlight);
 }
 
 .navbar-nav {
@@ -96,7 +96,6 @@ padding-top: 10px;
 
 /* END NAVBAR business
 */
-
 
 /* Project boxes
  */
@@ -159,10 +158,11 @@ padding-top: 10px;
 }
 
 .summary{
-  font-style: "Open Sans", arial, sans-serif ;
+  /* font-style: "Open Sans", arial, sans-serif ; */
+  font-style: "Menlo";
   font-weight: 700;
   font-size: 17px;
-  color: white;
+  color: var(--background);
   margin-bottom: 15px;
 }
 
@@ -198,9 +198,9 @@ summary::-webkit-details-marker {
 #skills-title{
   margin-bottom:5px;
   display:table;
-  font-family: Open Sans,arial,sans-serif;
-  font-weight:700;
-  color: var(--highlight);
+  font-family: "Menlo";
+  font-weight:600;
+  color: var(--base);
 }
 
 
@@ -219,11 +219,11 @@ summary::-webkit-details-marker {
 }
 
 .journal-theme{
-  background-color:#35353a;
+  background-color: var(--background);
 }
 
 .project{
-  background-color:#35353a;
+  background-color: var(--background);
 }
 
 body {
