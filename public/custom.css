@@ -2,10 +2,36 @@
     --highlight: purple;
       --base: #000000;
       --background: white;
+      --font_jet: "JetBrains Mono";
+      --font: "Menlo";
+}
+
+#construction-message {
+  text-align: center;
+  margin-top: 50vh; /* Adjust the value to lower or raise the position */
+  position: relative;
+  transform: translateY(-50%);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0; /* Start with opacity 0 */
+  }
+  50% {
+    opacity: 1; /* Midpoint of the animation, dots are fully visible */
+  }
+  100% {
+    opacity: 0; /* End with opacity 0 */
+  }
+}
+
+
+#blink-text {
+  animation: blink 2s infinite;
 }
 
 html * {
-  font-family: "Menlo" !important;
+  font-family: var(--font) !important;
 }
 
 #noneall a{
