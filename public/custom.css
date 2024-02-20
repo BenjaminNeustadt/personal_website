@@ -57,8 +57,8 @@ a {
 #text {
   text-align: center;
   align: justify;
+  font-size: small;
 }
-
 
 #name {
   font-weight: bold;
