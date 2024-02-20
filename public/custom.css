@@ -41,7 +41,7 @@ html * {
 
 a {
   color: var(--base);
-  /* text-decoration: none; */
+  text-decoration: none;
 }
 
 .container {
@@ -73,24 +73,13 @@ a {
 }
 
 
-/* TO REVISE */
-
-/* #link{
+#link{
   text-decoration: none;
-  color: purple;
 }
 
-#link:hover{ */
-
-  /* color: red; */
-
-/* #link:hover {
-  color: red;
-
-} */
-
-/* END REVISION */
-
+#link:hover{
+  color: var(--highlight);
+}
 
 #text {
   text-align: right;
