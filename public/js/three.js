@@ -79,7 +79,13 @@ container.appendChild(renderer.domElement);
 var cubesGroup = new THREE.Group(); // Create a group to hold all the cubes
 var size = 1;
 var cubeGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-var cubeMaterial = new THREE.MeshDepthMaterial();
+// var cubeMaterial = new THREE.MeshDepthMaterial();
+// Create cube geometry and material with purple color
+// var cubeMaterial = new THREE.MeshStandardMaterial({ color: 0x800080 }); // Use purple color (hex value: 0x800080)
+
+// Create cube geometry and material with black color
+var cubeMaterial = new THREE.MeshStandardMaterial({ color: 0x800000 }); // Use purple color (hex value: 0x800080)
+
 
 // Create cubes and add them to the group
 var gap = 0.1;
@@ -102,11 +108,15 @@ var animate = function () {
     requestAnimationFrame(animate);
 
     // Rotate the group around its center
-    cubesGroup.rotation.x += 0.01;
+    cubesGroup.rotation.x += 0.001;
     cubesGroup.rotation.y += 0.01;
 
     renderer.render(scene, camera);
 };
+
+// var light3 = new THREE.PointLight(0xffffff, 1, 50);
+// light3.position.set(5,0,5);
+// scene.add(light3);
 
 // Update renderer size
 window.addEventListener("resize", function () {
